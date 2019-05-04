@@ -11,7 +11,51 @@
 
     <modules>
         <module>kinolink-service</module>
+        <module>kinolink-web</module>
     </modules>
 
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.boot.version>2.1.3.RELEASE</spring.boot.version>
+        <postgresql.version>9.0-801.jdbc4</postgresql.version>
+        <lombok.version>1.18.6</lombok.version>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>dev-test</id>
+            <modules>
+                <module>kinolink-test</module>
+            </modules>
+        </profile>
+    </profiles>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.3.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
