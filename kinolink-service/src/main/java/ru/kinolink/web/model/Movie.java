@@ -126,8 +126,6 @@ public class Movie implements Serializable {
                 Objects.equals(description, movie.description) &&
                 Objects.equals(trailer, movie.trailer) &&
                 Objects.equals(releaseDate, movie.releaseDate) &&
-                Objects.equals(actors, movie.actors) &&
-                Objects.equals(directors, movie.directors) &&
                 Objects.equals(country, movie.country) &&
                 Objects.equals(genre, movie.genre);
     }

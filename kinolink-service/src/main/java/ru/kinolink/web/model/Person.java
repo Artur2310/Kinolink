@@ -70,9 +70,7 @@ public class Person implements Serializable {
                 rating == person.rating &&
                 Objects.equals(url, person.url) &&
                 Objects.equals(picturePath, person.picturePath) &&
-                Objects.equals(name, person.name) &&
-                Objects.equals(actorOfMovies, person.actorOfMovies) &&
-                Objects.equals(directorOfMovies, person.directorOfMovies);
+                Objects.equals(name, person.name);
     }
 
     @Override
