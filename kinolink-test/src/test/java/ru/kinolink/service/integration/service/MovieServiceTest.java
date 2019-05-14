@@ -13,7 +13,6 @@ import ru.kinolink.service.repository.MovieDAO;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration( classes = {TestAppConfig.class})
-@DataJpaTest
 public class MovieServiceTest {
 
     @Autowired
