@@ -11,9 +11,6 @@ import ru.kinolink.web.webapp.spring.AppConfig;
 @Import(AppConfig.class)
 public class WebApp {
 
-    @Autowired
-    PersonDAO personDAO;
-
     public static void main(String[] args) throws Exception {
         SpringApplication.run(WebApp.class, args);
     }

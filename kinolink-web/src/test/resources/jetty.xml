@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
+<Configure id="Server" class="org.eclipse.jetty.server.Server">
+
+    <!--<Set name="jdbcUrl">jdbc:oracle:thin:@odb01.rbs.bpc.in:1521:rbs</Set>--> <!-- DEV -->
+    <!--<Set name="jdbcUrl">jdbc:oracle:thin:@10.77.5.12:1521:orcl</Set>--> <!-- UAT -->
+
+</Configure>
