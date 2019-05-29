@@ -2,17 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>KinoLink (Admin)</title>
+    <title th:text="#{title_admin_movies}"></title>
 </head>
 <body>
     <div id="wrapper">
         <header>
             <div class="home">
-                <a th:href="${T(ru.kinolink.web.webapp.Url).HOME}">На сайт</a>
+                <a th:href="${T(ru.kinolink.web.webapp.Url).HOME}" th:text="#{button_back_to_home}"></a>
             </div>
 
             <div class="logout">
-                <a th:href="${T(ru.kinolink.web.webapp.Url).LOGOUT}">Выход</a>
+                <a th:href="${T(ru.kinolink.web.webapp.Url).LOGOUT}" th:text="#{button_exit}"></a>
             </div>
         </header>
     </div>
@@ -20,18 +20,54 @@
     <div class="block">
         <div id="navigation">
             <ul>
-                <li><a th:href="${T(ru.kinolink.web.webapp.Url).ADMIN_PAGE_MOVIES}">Фильмы</a></li>
-                <li><a th:href="${T(ru.kinolink.web.webapp.Url).ADMIN_PAGE_PERSONS}">Персоны</a></li>
-                <li><a th:href="${T(ru.kinolink.web.webapp.Url).ADMIN_PAGE_SETTINGS}">Настройки</a></li>
+                <li><a th:href="${T(ru.kinolink.web.webapp.Url).ADMIN_PAGE_MOVIES}" th:text="#{button_movies}"></a></li>
+                <li><a th:href="${T(ru.kinolink.web.webapp.Url).ADMIN_PAGE_PERSONS}" th:text="#{button_persons}"></a></li>
+                <li><a th:href="${T(ru.kinolink.web.webapp.Url).ADMIN_PAGE_SETTINGS}" th:text="#{button_settings}"></a></li>
             </ul>
         </div>
     </div>
 
     <div id="content">
         <div class="movies">
-            <div id=addMovie>
+            <div id=add-movie>
                 <a class="btn btn-primary"
-                   href="${pageContext.request.contextPath}/admin/movies/add_movie" th:text="#{add_movie_label}"></a>
+                   th:href="${T(ru.kinolink.web.webapp.Url).ADMIN_ADD_MOVIE}" th:text="#{button_add_movie}"></a>
+            </div>
+
+            <div id="search">
+                <div id="search-panel">
+                    <form action="movies" method="get" id="searchForm">
+
+                        <div class="input-group">
+                            <input type="text" th:value="${search}"  name="search" id="search-query" class="form-control">
+                            <span class="input-group-btn">
+									<button class="btn btn-primary" id="btn-search" type="submit" th:text="#{button_search}">
+										<i class="fa fa-search"></i>
+									</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+
+                <div>
+                    <form accept-charset="UTF-8" action="movies" method="get">
+                        <div style="display: none"></div>
+
+                        <label><b th:text="#{label_sort}"></b>:
+                            <select id="sort" class="select" name="sort" >
+                            <option value="id" th:text="#{label_date_added}"></option>
+                            <option th:attrappend="${sort eq 'releaseDate'}? 'selected'" value="releaseDate">Новинки</option>
+                            <option th:attrappend="${sort eq 'imdb'}? 'selected'" value="imdb">Рейтинг</option>
+
+                            </select>
+
+                        </label>
+
+                    </form>
+
+                </div>
+            </div>
+
             </div>
         </div>
     </div>

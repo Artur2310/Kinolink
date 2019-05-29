@@ -12,6 +12,10 @@ public class AdminMovieController {
 
     @GetMapping(value = Url.ADMIN_PAGE_MOVIES)
     public ModelAndView adminPageMovies(ModelAndView model, HttpServletRequest reuqest){
+        String search = "default";
+        String sort = "imdb";
+        model.addObject("search", search);
+        model.addObject("sort", sort);
         model.setViewName("admin/admin_page_movies");
         return model;
     }

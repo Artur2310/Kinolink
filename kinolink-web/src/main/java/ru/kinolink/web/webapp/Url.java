@@ -15,4 +15,5 @@ public class Url {
     public static final String ADMIN_PAGE_MOVIES = "/admin/movies";
     public static final String ADMIN_PAGE_PERSONS = "/admin/persons";
     public static final String ADMIN_PAGE_SETTINGS = "/admin/settings";
+    public static final String ADMIN_ADD_MOVIE = "/admin/movies/add";
 }
