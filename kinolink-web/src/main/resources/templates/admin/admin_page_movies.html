@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>KinoLink (Admin)</title>
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <div class="home">
+                <a th:href="${T(ru.kinolink.web.webapp.Url).HOME}">На сайт</a>
+            </div>
+
+            <div class="logout">
+                <a th:href="${T(ru.kinolink.web.webapp.Url).LOGOUT}">Выход</a>
+            </div>
+        </header>
+    </div>
+
+    <div class="block">
+        <div id="navigation">
+            <ul>
+                <li><a th:href="${T(ru.kinolink.web.webapp.Url).ADMIN_PAGE_MOVIES}">Фильмы</a></li>
+                <li><a th:href="${T(ru.kinolink.web.webapp.Url).ADMIN_PAGE_PERSONS}">Персоны</a></li>
+                <li><a th:href="${T(ru.kinolink.web.webapp.Url).ADMIN_PAGE_SETTINGS}">Настройки</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="movies">
+            <div id=addMovie>
+                <a class="btn btn-primary"
+                   href="${pageContext.request.contextPath}/admin/movies/add_movie" th:text="#{add_movie_label}"></a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

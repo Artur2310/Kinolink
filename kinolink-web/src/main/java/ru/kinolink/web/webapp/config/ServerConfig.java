@@ -6,13 +6,14 @@ import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerF
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 @Configuration
-public class ServerConfig {
+public class ServerConfig implements WebMvcConfigurer {
 
     @Bean
     public ConfigurableServletWebServerFactory webServerFactory() {
@@ -49,4 +50,5 @@ public class ServerConfig {
         viewResolver.setCharacterEncoding("UTF-8");
         return viewResolver;
     }
+
 }
