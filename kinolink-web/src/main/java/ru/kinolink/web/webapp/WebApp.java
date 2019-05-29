@@ -1,11 +1,9 @@
 package ru.kinolink.web.webapp;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
-import ru.kinolink.web.repository.PersonDAO;
-import ru.kinolink.web.webapp.spring.AppConfig;
+import ru.kinolink.web.webapp.config.AppConfig;
 
 @SpringBootApplication
 @Import(AppConfig.class)
