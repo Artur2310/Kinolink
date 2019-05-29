@@ -56,9 +56,8 @@
                         <label><b th:text="#{label_sort}"></b>:
                             <select id="sort" class="select" name="sort" >
                             <option value="id" th:text="#{label_date_added}"></option>
-                            <option th:attrappend="${sort eq 'releaseDate'}? 'selected'" value="releaseDate">Новинки</option>
-                            <option th:attrappend="${sort eq 'imdb'}? 'selected'" value="imdb">Рейтинг</option>
-
+                            <option th:selected="${sort == 'releaseDate'}" value="releaseDate">Новинки</option>
+                            <option th:selected="${sort == 'imdb'}" value="imdb">Рейтинг</option>
                             </select>
 
                         </label>
