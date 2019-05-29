@@ -2,10 +2,14 @@ package ru.kinolink.web.webapp.spring;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
+import org.springframework.boot.web.server.ErrorPage;
+import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.ViewResolver;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -18,6 +22,16 @@ import ru.kinolink.web.config.ServiceConfig;
 @EntityScan(basePackageClasses = {ServiceConfig.class})
 @EnableJpaRepositories(basePackageClasses = {ServiceConfig.class})
 public class AppConfig {
+
+
+    @Bean
+    public ConfigurableServletWebServerFactory webServerFactory()
+    {
+        JettyServletWebServerFactory factory = new JettyServletWebServerFactory();
+        factory.setPort(9000);
+        return factory;
+    }
+
 
     @Bean
     public ClassLoaderTemplateResolver templateResolver() {

@@ -23,6 +23,17 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
         </dependency>
 
         <dependency>
@@ -55,65 +66,12 @@
                 <artifactId>maven-surefire-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.4.18.v20190429</version>
-                <configuration>
-                    <webAppConfig>
-                        <!-- Add the backend API's classes to Jetty's classpath so that the
-                            server will be able to load the class files. -->
-                        <!--<contextPath>/kl</contextPath>-->
-                        <extraClasspath>../kinolink-service/target/classes</extraClasspath>
-                    </webAppConfig>
-                    <scanIntervalSeconds>0</scanIntervalSeconds>
-                    <!--<jettyConfig>src/test/resources/jetty.xml</jettyConfig>-->
-                    <connectors>
-                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>9999</port>
-                            <maxIdleTime>60000</maxIdleTime>
-                        </connector>
-                    </connectors>
-                    <stopPort>8191</stopPort>
-                    <stopKey>ts</stopKey>
-                </configuration>
-               <!-- <executions>
-                    <execution>
-                        <id>start-jetty</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>-->
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <attachClasses>true</attachClasses>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <classifier>${classifier}</classifier>
-                    <archive>
-                        <manifestEntries>
-                            <vendor>Runet_Business_Systems</vendor>
-                            <buildTimestamp>${buildDateTime}</buildTimestamp>
-                            <revision>${buildNumber}</revision>
-                            <version>${project.version}</version>
-                            <branch>${scmBranch}</branch>
-                            <profile>${profile.name}</profile>
-                            <project_name>${project.artifactId}</project_name>
-                        </manifestEntries>
-                    </archive>
                 </configuration>
             </plugin>
         </plugins>
