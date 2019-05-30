@@ -54,20 +54,26 @@
                         <div style="display: none"></div>
 
                         <label><b th:text="#{label_sort}"></b>:
-                            <select id="sort" class="select" name="sort" >
+                            <select id="sort" class="select" name="sort" onchange="$(this).parent().parent().submit();">
                             <option value="id" th:text="#{label_date_added}"></option>
-                            <option th:selected="${sort == 'releaseDate'}" value="releaseDate">Новинки</option>
-                            <option th:selected="${sort == 'imdb'}" value="imdb">Рейтинг</option>
+                            <option th:selected="${sort == 'releaseDate'}" value="releaseDate" th:text="#{label_new}"></option>
+                            <option th:selected="${sort == 'imdb'}" value="imdb" th:text="#{label_rating}"></option>
+                            <option th:selected="${sort == 'title'}" value="title" th:text="#{label_title}"></option>
                             </select>
-
                         </label>
 
+                        <label><b th:text="#{label_sort}">Страна</b>:
+                            <select id="country-selector" class="select" name="country" onchange="$(this).parent().parent().submit();">
+                            <option value="0">Любая</option>
+                            <option th:each="country : ${countryList}" th:value="${country.id}"
+                                    th:selected="${country.id == countryId}" th:text="${country.getName()}"></option>
+                            </select>
+                        </label>
                     </form>
 
                 </div>
             </div>
 
-            </div>
         </div>
     </div>
 

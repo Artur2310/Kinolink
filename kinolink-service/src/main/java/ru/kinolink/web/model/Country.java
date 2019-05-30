@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -18,7 +19,7 @@ import java.util.Set;
 @Table(name = "country")
 @Getter
 @Setter
-public class Country {
+public class Country implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
