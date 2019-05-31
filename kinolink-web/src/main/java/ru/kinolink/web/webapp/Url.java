@@ -7,6 +7,8 @@ public class Url {
      */
     public static final String HOME = "/";
     public static final String LOGOUT = "/logout";
+    public static final String IMAGE_NOT_FOUND = "/resources/images/not_found.jpg";
+    public static final String GET_IMAGE = "/get_image?path=";
 
     /**
      * Admin functional
@@ -16,4 +18,5 @@ public class Url {
     public static final String ADMIN_PAGE_PERSONS = "/admin/persons";
     public static final String ADMIN_PAGE_SETTINGS = "/admin/settings";
     public static final String ADMIN_ADD_MOVIE = "/admin/movies/add";
+    public static final String ADMIN_PAGE_MOVIE = "/admin/movies/movie";
 }
