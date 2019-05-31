@@ -61,7 +61,7 @@ public class AdminMovieController {
         model.addObject("genreList", genreList);
         model.addObject("genreId", genreId);
         model.addObject("movieList", movieList);
-        model.setViewName("admin/admin_page_movies");
+        model.setViewName(AdminController.VIEW_ADMIN_PAGE_MOVIES);
         return model;
     }
 }
