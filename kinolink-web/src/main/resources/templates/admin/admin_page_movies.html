@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{title_admin_movies}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin_page_movies.css}"/>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
 </head>
 <body>
     <div id="wrapper">
@@ -86,8 +92,8 @@
                 <div class="movie-item" th:each="movieItem : ${movieList}">
                     <a th:href="${T(ru.kinolink.web.webapp.Url).ADMIN_PAGE_MOVIE}+${movieItem.id}">
                         <img th:alt="${movieItem.title}" class="cover"
-                             th:src="${movieItem.picturePath != null && !movieItem.picturePath.isEmpty()} ? ${T(ru.kinolink.web.webapp.Url.GET_IMAGE}+${movieItem.picturePath}"
-                             : ${T(ru.kinolink.web.webapp.Url).IMAGE_NOT_FOUND}>
+                             th:src="${movieItem.picturePath != null && !movieItem.picturePath.isEmpty()} ? ${T(ru.kinolink.web.webapp.Url.GET_IMAGE}+${movieItem.picturePath}
+                             : ${T(ru.kinolink.web.webapp.Url).IMAGE_NOT_FOUND}">
                         <span class="title" th:text="${movieItem.title}"></span>
                     </a>
                     <span class="add-info"><a th:text="${#dates.format(movieItem.releaseDate, 'yyyy')}"></a>
@@ -95,6 +101,28 @@
                     </span>
                     <span th:text="${movieItem.getGenreString()}"></span>
                 </div>
+
+                <script type="text/javascript">
+                    $('#pagination')
+                        .pagination(
+                            {
+                                items : "${pageCount}",
+                                itemOnPage : 8,
+                                currentPage : "${page}",
+                                displayedPages : 4,
+
+                                hrefTextPrefix : "?sort=${sort}&country=${country}&genre=${genre}&search=${search}&page=",
+
+                                prevText : '<span aria-hidden="true">&laquo;</span>',
+                                nextText : '<span aria-hidden="true">&raquo;</span>',
+                                onInit : function() {
+                                    // fire first page loading
+                                },
+                                onPageClick : function(page, evt) {
+                                    // some code
+                                }
+                            });
+                </script>
 
             </div>
 

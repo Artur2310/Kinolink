@@ -7,7 +7,7 @@ public class Url {
      */
     public static final String HOME = "/";
     public static final String LOGOUT = "/logout";
-    public static final String IMAGE_NOT_FOUND = "/resources/images/not_found.jpg";
+    public static final String IMAGE_NOT_FOUND = "/images/not_found.jpg";
     public static final String GET_IMAGE = "/get_image?path=";
 
     /**
