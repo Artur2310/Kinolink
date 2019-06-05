@@ -17,6 +17,8 @@ import ru.kinolink.web.webapp.config.LocaleConfig;
 @Import({TestDBConfig.class,
         LocaleConfig.class,
         ServiceConfig.class})
+//@PropertySource("test-config.properties")
+@ComponentScan(basePackageClasses = AdminMovieController.class)
 public class TestAppConfig implements WebMvcConfigurer {
 
 }
