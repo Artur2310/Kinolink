@@ -1,9 +1,9 @@
-package ru.kinolink.web.dto;
+package ru.kinolink.service.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import ru.kinolink.web.SortUtil;
-import ru.kinolink.web.model.Movie;
+import ru.kinolink.service.SortUtil;
+import ru.kinolink.service.model.Movie;
 
 import java.util.List;
 

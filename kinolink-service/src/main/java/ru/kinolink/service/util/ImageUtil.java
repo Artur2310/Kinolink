@@ -1,4 +1,4 @@
-package ru.kinolink.web.util;
+package ru.kinolink.service.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

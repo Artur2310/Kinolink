@@ -1,4 +1,4 @@
-package ru.kinolink.web.service;
+package ru.kinolink.service.service;
 
 import org.springframework.web.multipart.MultipartFile;
 

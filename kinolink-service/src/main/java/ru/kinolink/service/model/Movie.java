@@ -1,4 +1,4 @@
-package ru.kinolink.web.model;
+package ru.kinolink.service.model;
 
 import lombok.Getter;
 import lombok.Setter;

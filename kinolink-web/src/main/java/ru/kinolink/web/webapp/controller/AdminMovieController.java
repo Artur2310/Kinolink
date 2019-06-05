@@ -3,10 +3,10 @@ package ru.kinolink.web.webapp.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
-import ru.kinolink.web.model.Country;
-import ru.kinolink.web.model.Genre;
-import ru.kinolink.web.model.Movie;
-import ru.kinolink.web.model.builder.MovieBuilder;
+import ru.kinolink.service.model.Country;
+import ru.kinolink.service.model.Genre;
+import ru.kinolink.service.model.Movie;
+import ru.kinolink.service.model.builder.MovieBuilder;
 import ru.kinolink.web.webapp.Url;
 
 import javax.servlet.http.HttpServletRequest;

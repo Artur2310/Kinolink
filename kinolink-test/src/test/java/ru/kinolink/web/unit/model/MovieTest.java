@@ -1,8 +1,8 @@
 package ru.kinolink.web.unit.model;
 
 import org.junit.Test;
-import ru.kinolink.web.model.Movie;
-import ru.kinolink.web.model.builder.MovieBuilder;
+import ru.kinolink.service.model.Movie;
+import ru.kinolink.service.model.builder.MovieBuilder;
 
 import java.util.Arrays;
 import java.util.HashSet;

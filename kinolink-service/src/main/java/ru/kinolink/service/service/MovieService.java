@@ -1,7 +1,7 @@
-package ru.kinolink.web.service;
+package ru.kinolink.service.service;
 
-import ru.kinolink.web.dto.PageViewListMovie;
-import ru.kinolink.web.model.Movie;
+import ru.kinolink.service.dto.PageViewListMovie;
+import ru.kinolink.service.model.Movie;
 
 import java.util.List;
 

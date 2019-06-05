@@ -1,4 +1,4 @@
-package ru.kinolink.web.service.impl;
+package ru.kinolink.service.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,10 +6,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import ru.kinolink.web.model.Movie;
-import ru.kinolink.web.model.Person;
-import ru.kinolink.web.repository.PersonDAO;
-import ru.kinolink.web.service.PersonService;
+import ru.kinolink.service.repository.PersonDAO;
+import ru.kinolink.service.model.Movie;
+import ru.kinolink.service.model.Person;
+import ru.kinolink.service.service.PersonService;
 
 
 import java.util.*;

@@ -1,8 +1,8 @@
-package ru.kinolink.web.service;
+package ru.kinolink.service.service;
 
 import org.springframework.data.domain.Page;
-import ru.kinolink.web.model.Movie;
-import ru.kinolink.web.model.Person;
+import ru.kinolink.service.model.Movie;
+import ru.kinolink.service.model.Person;
 
 import java.util.List;
 

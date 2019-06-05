@@ -1,4 +1,4 @@
-package ru.kinolink.web.config;
+package ru.kinolink.service.config;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;

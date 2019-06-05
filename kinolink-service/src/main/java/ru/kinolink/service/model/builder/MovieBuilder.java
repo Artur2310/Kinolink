@@ -1,6 +1,6 @@
-package ru.kinolink.web.model.builder;
+package ru.kinolink.service.model.builder;
 
-import ru.kinolink.web.model.Movie;
+import ru.kinolink.service.model.Movie;
 
 import java.util.Date;
 

@@ -1,55 +1,55 @@
-package ru.kinolink.web.model;
+package ru.kinolink.service.model;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 /**
- * Genre of the movie
+ *The country that created the movie
  *
  * @author Bocharow Artur
  */
 @Entity
-@Table(name = "genre")
+@Table(name = "country")
 @Getter
 @Setter
-public class Genre {
+public class Country implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
-    @Column(name = "ID")
+    @Column(name = "COUNTRY_ID")
     private Integer id;
 
-    @Column(name = "GENRE_TITLE")
-    private String title;
+    @Column(name = "COUNTRY_NAME")
+    private String name;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "genre_movie", joinColumns = @JoinColumn(name = "genre_id"), inverseJoinColumns = @JoinColumn(name = "movie_id"))
+    @JoinTable(name = "country_movie", joinColumns = @JoinColumn(name = "country_id"), inverseJoinColumns = @JoinColumn(name = "movie_id"))
     private Set<Movie> movies = new HashSet<Movie>();
 
     @Override
     public String toString() {
-        return title;
+        return name;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Genre genre = (Genre) o;
-        return id == genre.id &&
-                Objects.equals(title, genre.title);
+        Country country = (Country) o;
+        return id == country.id &&
+                Objects.equals(name, country.name);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(id, title);
+        return Objects.hash(id, name);
     }
 }

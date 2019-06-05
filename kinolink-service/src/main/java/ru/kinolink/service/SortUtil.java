@@ -1,4 +1,4 @@
-package ru.kinolink.web;
+package ru.kinolink.service;
 
 import java.util.Arrays;
 import java.util.List;
