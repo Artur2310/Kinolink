@@ -17,7 +17,7 @@ import ru.kinolink.web.webapp.controller.AdminMovieController;
         LocaleConfig.class,
         ServiceConfig.class})
 //@PropertySource("test-config.properties")
-@ComponentScan(basePackageClasses = AdminMovieController.class)
+@ComponentScan(basePackages = "ru.kinolink.web.webapp.controller")
 public class TestAppConfig implements WebMvcConfigurer {
 
 }
