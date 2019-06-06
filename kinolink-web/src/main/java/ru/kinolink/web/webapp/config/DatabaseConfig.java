@@ -1,6 +1,8 @@
 package ru.kinolink.web.webapp.config;
 
 import com.google.common.io.ByteStreams;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
@@ -11,6 +13,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import ru.kinolink.service.config.ServiceConfig;
+import ru.kinolink.service.service.impl.MovieImageService;
 
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -20,6 +23,7 @@ import java.net.URL;
 
 @Import(ServiceConfig.class)
 public class DatabaseConfig {
+    private static final Logger logger = LoggerFactory.getLogger(MovieImageService.class);
 
     @Autowired
     Environment environment;
@@ -38,8 +42,10 @@ public class DatabaseConfig {
             if (environment.getProperty("init_data").equals("true")) {
                 InputStream inputStream = new URL(environment.getProperty("url_data")).openStream();
                 Resource initSchema = new ByteArrayResource(ByteStreams.toByteArray(inputStream));
-                resourceDatabasePopulator.addScript(new ClassPathResource("schema.sql"));
+                resourceDatabasePopulator.addScript(new ClassPathResource("db/schema.sql"));
                 resourceDatabasePopulator.addScript(initSchema);
+                logger.info("Filling the database");
+
             }
 
         } catch (MalformedURLException exeption) {
