@@ -41,7 +41,7 @@ public class DatabaseConfig {
         try {
             if (environment.getProperty("init_data").equals("true")) {
                 InputStream inputStream = new URL(environment.getProperty("url_data")).openStream();
-                Resource initSchema = new ByteArrayResource(ByteStreams.toByteArray(inputStream));
+                Resource initSchema = new ByteArrayResource(ByteStreams.toByteArray(inputStream), "UTF-8");
                 resourceDatabasePopulator.addScript(new ClassPathResource("db/schema.sql"));
                 resourceDatabasePopulator.addScript(initSchema);
                 logger.info("Filling the database");

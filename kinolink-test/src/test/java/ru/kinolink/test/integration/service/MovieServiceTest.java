@@ -1,4 +1,4 @@
-package ru.kinolink.web.integration.service;
+package ru.kinolink.test.integration.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +10,7 @@ import ru.kinolink.service.dto.PageViewListMovie;
 import ru.kinolink.service.model.Movie;
 import ru.kinolink.service.model.builder.MovieBuilder;
 import ru.kinolink.service.service.MovieService;
-import ru.kinolink.web.integration.TestAppConfig;
+import ru.kinolink.test.integration.TestAppConfig;
 
 import java.util.Arrays;
 import java.util.Date;

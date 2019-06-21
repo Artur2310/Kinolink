@@ -1,4 +1,4 @@
-package ru.kinolink.web.integration.controller;
+package ru.kinolink.test.integration.controller;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +10,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import ru.kinolink.web.integration.TestAppConfig;
+import ru.kinolink.test.integration.TestAppConfig;
 import ru.kinolink.web.webapp.Url;
 import ru.kinolink.web.webapp.controller.AdminController;
 

@@ -1,4 +1,4 @@
-package ru.kinolink.web.unit.model;
+package ru.kinolink.test.unit.model;
 
 import org.junit.Test;
 import ru.kinolink.service.model.Movie;

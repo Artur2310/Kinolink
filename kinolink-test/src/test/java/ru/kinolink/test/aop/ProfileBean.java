@@ -1,4 +1,4 @@
-package ru.kinolink.web.aop;
+package ru.kinolink.test.aop;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;

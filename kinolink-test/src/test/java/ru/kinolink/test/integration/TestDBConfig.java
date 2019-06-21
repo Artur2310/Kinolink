@@ -1,4 +1,4 @@
-package ru.kinolink.web.integration;
+package ru.kinolink.test.integration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
