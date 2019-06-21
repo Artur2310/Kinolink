@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface MovieService {
 
-    public boolean add(Movie movie);
+    public Movie add(Movie movie);
 
     public Movie get(int id);
 

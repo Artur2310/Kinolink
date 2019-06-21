@@ -32,8 +32,8 @@ public class MovieServiceTest {
                 .setDescription("Test")
                 .build();
 
-        assertTrue(movieService.add(movieOne));
-        assertTrue(!movieService.add(null));
+        assertTrue(movieService.add(movieOne) != null);
+        assertTrue(movieService.add(null) == null);
     }
 
     @Test

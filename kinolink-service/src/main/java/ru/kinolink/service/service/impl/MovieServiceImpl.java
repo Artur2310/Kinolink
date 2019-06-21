@@ -32,9 +32,10 @@ public class MovieServiceImpl implements MovieService {
     @Autowired
     MovieDAO movieDAO;
 
-    public MovieServiceImpl(){
+    public MovieServiceImpl() {
         System.out.println("Create MovieService");
     }
+
     /**
      * Добавить фильм в базу данных
      *
@@ -42,20 +43,18 @@ public class MovieServiceImpl implements MovieService {
      * @return {@literal true} если фильм усешно добавлен, {@literal false} иначе.
      */
     @Override
-    public boolean add(Movie movie) {
-        try {
-            if (movie != null && Optional.of(movieDAO.save(movie)).isPresent()) {
-                logger.info("Movie with title - " + movie.getTitle() + " added.");
-                return true;
-            } else {
-                logger.error("Movie not added. Movie equals null or MovieDAO return NULL");
-                return false;
-            }
+    public Movie add(Movie movie) {
 
-        } catch (Exception e) {
-            logger.error("Movie not added. ", e);
-            return false;
+        if (movie != null) {
+            return Optional.of(movieDAO.save(movie)).map(m -> {
+                logger.info("Movie with title - " + movie.getTitle() + " added.");
+                return m;
+            }).orElseGet(() -> {
+                logger.error("Movie not added.");
+                return null;
+            });
         }
+        return null;
     }
 
     /**

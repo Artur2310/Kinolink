@@ -19,44 +19,42 @@ public abstract class ImageUtil {
 
 	protected String category;
 
-	public String getPath(Integer id) {
+	public String getPath(Integer id, String uploadDir) {
 
 		Integer two = (id % 1000000) / 1000;
 		Integer one = (id % 1000000000) / 1000000;
 
-		String path = "image";
-
-		File dir = new File(path);
+		File dir = new File(uploadDir);
 
 		if (!dir.exists()) {
 			dir.mkdirs();
 		}
 
-		path = path + "/" + category;
+		uploadDir = uploadDir + "/" + category;
 
-		dir = new File(path);
-
-		if (!dir.exists()) {
-			dir.mkdirs();
-		}
-
-		path = path + "/" + String.format("%03d", one);
-
-		dir = new File(path);
+		dir = new File(uploadDir);
 
 		if (!dir.exists()) {
 			dir.mkdirs();
 		}
 
-		path = path + "/" + String.format("%03d", two);
+		uploadDir = uploadDir + "/" + String.format("%03d", one);
 
-		dir = new File(path);
+		dir = new File(uploadDir);
 
 		if (!dir.exists()) {
 			dir.mkdirs();
 		}
 
-		return path;
+		uploadDir = uploadDir + "/" + String.format("%03d", two);
+
+		dir = new File(uploadDir);
+
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
+
+		return uploadDir;
 	}
 
 	public static byte[] formatImage(byte[] file) {
@@ -134,10 +132,10 @@ public abstract class ImageUtil {
 	}
 	
 	// Save the image to the server
-public String saveImage(Integer id, byte[] file) throws IOException{
+public String saveImage(Integer id, byte[] file, String uploadDir) throws IOException{
 		
 		byte[] bytes = ImageUtil.formatImage(file);
-		String dir = this.getPath(id);
+		String dir = this.getPath(id, uploadDir);
 
 		String name = id.toString() +".jpg";
 		
