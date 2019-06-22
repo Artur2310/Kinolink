@@ -14,7 +14,7 @@ import ru.kinolink.web.webapp.config.LocaleConfig;
 @Import({TestDBConfig.class,
         LocaleConfig.class,
         ServiceConfig.class})
-@PropertySource("test-config.properties")
+@PropertySource("classpath:test-config.properties")
 @ComponentScan(basePackages = "ru.kinolink.web.webapp.controller")
 public class TestAppConfig implements WebMvcConfigurer {
 
