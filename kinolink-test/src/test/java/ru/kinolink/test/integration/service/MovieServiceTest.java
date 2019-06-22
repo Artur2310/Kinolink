@@ -12,6 +12,8 @@ import ru.kinolink.service.model.builder.MovieBuilder;
 import ru.kinolink.service.service.MovieService;
 import ru.kinolink.test.integration.TestAppConfig;
 
+import javax.transaction.Transactional;
+import java.beans.Transient;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -73,5 +75,21 @@ public class MovieServiceTest {
         assertNull(exception);
         assertNotNull(pvlMovie);
         assertEquals(pvlMovie.getMovies().size(), 2);
+    }
+
+    @Test
+    @Transactional
+    public void getMovie(){
+        Movie movieOne = MovieBuilder.newBuilder().
+                setTitle("Loko")
+                .setImdb(7.8f)
+                .setDescription("Test")
+                .build();
+
+        int id = movieService.add(movieOne).getId();
+
+        assertTrue(movieService.get(id) != null);
+        assertTrue(movieService.get(-2) == null);
+        assertTrue(movieService.get(999) == null);
     }
 }

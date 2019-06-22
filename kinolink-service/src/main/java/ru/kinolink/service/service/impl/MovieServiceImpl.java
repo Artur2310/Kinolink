@@ -44,18 +44,17 @@ public class MovieServiceImpl implements MovieService {
      */
     @Override
     public Movie add(Movie movie) {
-
-        if (movie != null) {
-            return Optional.of(movieDAO.save(movie)).map(m -> {
-                logger.info("Movie with title - " + movie.getTitle() + " added.");
-                return m;
-            }).orElseGet(() -> {
-                logger.error("Movie not added.");
-                return null;
-            });
-        }
-        return null;
+        return (movie != null) ?
+                Optional.of(movieDAO.save(movie)).map(m -> {
+                    logger.info("Movie with title - " + movie.getTitle() + " added.");
+                    return m;
+                }).orElseGet(() -> {
+                    logger.error("Movie not added.");
+                    return null;
+                })
+                : null;
     }
+
 
     /**
      * Получить фильм по id
@@ -65,13 +64,7 @@ public class MovieServiceImpl implements MovieService {
      */
     @Override
     public Movie get(int id) {
-
-        if (id < 0) {
-            logger.error("Value 'id = " + id + "' less than 0");
-            return null;
-        }
-
-        return Optional.ofNullable(movieDAO.getOne(id))
+        return (id < 0) ? null : movieDAO.findById(id)
                 .orElseGet(() -> {
                     logger.error("Movie with id = " + id + " not found");
                     return null;
@@ -125,6 +118,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public void remove(int id) {
+
         if (id < 0) {
             logger.error("Value of id is not valid");
             return;
@@ -136,13 +130,13 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public boolean saveAll(Iterable<Movie> list) {
-        if (list != null) {
+        return Optional.of(list).map(m -> {
             movieDAO.saveAll(list);
             return true;
-        } else {
+        }).orElseGet(() -> {
             logger.error("The list to add is null");
             return false;
-        }
+        });
     }
 
     @Override

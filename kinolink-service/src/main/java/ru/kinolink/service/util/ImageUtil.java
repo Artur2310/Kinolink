@@ -15,180 +15,174 @@ import java.util.Iterator;
 
 public abstract class ImageUtil {
 
-	private static final Logger logger = LoggerFactory.getLogger(ImageUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(ImageUtil.class);
 
-	protected String category;
+    protected String category;
 
-	public String getPath(Integer id, String uploadDir) {
+    public String getPath(Integer id, String uploadDir) {
 
-		Integer two = (id % 1000000) / 1000;
-		Integer one = (id % 1000000000) / 1000000;
+        Integer two = (id % 1000000) / 1000;
+        Integer one = (id % 1000000000) / 1000000;
 
-		File dir = new File(uploadDir);
+        File dir = new File(uploadDir);
 
-		if (!dir.exists()) {
-			dir.mkdirs();
-		}
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
 
-		uploadDir = uploadDir + "/" + category;
+        uploadDir = uploadDir + "/" + category;
 
-		dir = new File(uploadDir);
+        dir = new File(uploadDir);
 
-		if (!dir.exists()) {
-			dir.mkdirs();
-		}
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
 
-		uploadDir = uploadDir + "/" + String.format("%03d", one);
+        uploadDir = uploadDir + "/" + String.format("%03d", one);
 
-		dir = new File(uploadDir);
+        dir = new File(uploadDir);
 
-		if (!dir.exists()) {
-			dir.mkdirs();
-		}
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
 
-		uploadDir = uploadDir + "/" + String.format("%03d", two);
+        uploadDir = uploadDir + "/" + String.format("%03d", two);
 
-		dir = new File(uploadDir);
+        dir = new File(uploadDir);
 
-		if (!dir.exists()) {
-			dir.mkdirs();
-		}
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
 
-		return uploadDir;
-	}
+        return uploadDir;
+    }
 
-	public static byte[] formatImage(byte[] file) {
+    public static byte[] formatImage(byte[] file) {
 
-		
-		try {
 
-			ByteArrayInputStream bais = new ByteArrayInputStream(file);
-			BufferedImage input = ImageIO.read(bais);
+        try {
 
-			double width = input.getWidth();
-			double height = input.getHeight();
-			double param = width / height;
-			
-			if (param > 0.715) {
+            ByteArrayInputStream bais = new ByteArrayInputStream(file);
+            BufferedImage input = ImageIO.read(bais);
 
-				double nWidth = height * 0.715;
-				int x = (int) (width / 2 - nWidth / 2);
-				input = input.getSubimage(x, 0, (int) nWidth, (int) height);
+            double width = input.getWidth();
+            double height = input.getHeight();
+            double param = width / height;
 
-			}
-			if (param < 0.715) {
-				double nHeight = width * 0.715;
-				int y = (int) (height / 2 - nHeight / 2);
-				input.getSubimage(0, y, (int)width, (int) nHeight);
-			}
- 
+            if (param > 0.715) {
 
-			int nWidth = 261;
-			int nHeight = 365;
-			Image nImage = input.getScaledInstance(nWidth, nHeight, Image.SCALE_AREA_AVERAGING);
-			input = new BufferedImage(nWidth, nHeight, BufferedImage.TYPE_INT_RGB);
-			Graphics2D g2d = input.createGraphics();
-			g2d.drawImage(nImage, 0, 0, null);
-			g2d.dispose();
+                double nWidth = height * 0.715;
+                int x = (int) (width / 2 - nWidth / 2);
+                input = input.getSubimage(x, 0, (int) nWidth, (int) height);
 
-			Iterator iter = ImageIO.getImageWritersByFormatName("JPG");
-			if (iter.hasNext()) {
-				ImageWriter writer = (ImageWriter) iter.next();
-				ImageWriteParam iwp = writer.getDefaultWriteParam();
-				iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-				float value = 0.75f;
-				// Write one for each compression values
+            }
+            if (param < 0.715) {
+                double nHeight = width * 0.715;
+                int y = (int) (height / 2 - nHeight / 2);
+                input.getSubimage(0, y, (int) width, (int) nHeight);
+            }
 
-				iwp.setCompressionQuality(value);
 
-				BufferedImage buf = new BufferedImage(261, 365, BufferedImage.TYPE_INT_RGB);
+            int nWidth = 261;
+            int nHeight = 365;
+            Image nImage = input.getScaledInstance(nWidth, nHeight, Image.SCALE_AREA_AVERAGING);
+            input = new BufferedImage(nWidth, nHeight, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2d = input.createGraphics();
+            g2d.drawImage(nImage, 0, 0, null);
+            g2d.dispose();
 
-				ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            Iterator iter = ImageIO.getImageWritersByFormatName("JPG");
+            if (iter.hasNext()) {
+                ImageWriter writer = (ImageWriter) iter.next();
+                ImageWriteParam iwp = writer.getDefaultWriteParam();
+                iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+                float value = 0.75f;
+                // Write one for each compression values
 
-				ImageOutputStream ios;
+                iwp.setCompressionQuality(value);
 
-				ios = ImageIO.createImageOutputStream(bytes);
+                BufferedImage buf = new BufferedImage(261, 365, BufferedImage.TYPE_INT_RGB);
 
-				writer.setOutput(ios);
-				IIOImage image = new IIOImage(input, null, null);
+                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
 
-				writer.write(null, image, iwp);
+                ImageOutputStream ios;
 
-				return bytes.toByteArray();
-			}
+                ios = ImageIO.createImageOutputStream(bytes);
 
-			return null;
+                writer.setOutput(ios);
+                IIOImage image = new IIOImage(input, null, null);
 
-		} catch (IOException e) {
+                writer.write(null, image, iwp);
 
-			logger.info(e.getMessage());
-		} 
-		catch (Exception e) {
-			logger.info(e.getMessage()); 
-		}
+                return bytes.toByteArray();
+            }
 
-		return null;
+            return null;
 
-	}
-	
-	// Save the image to the server
-public String saveImage(Integer id, byte[] file, String uploadDir) throws IOException{
-		
-		byte[] bytes = ImageUtil.formatImage(file);
-		String dir = this.getPath(id, uploadDir);
+        } catch (IOException e) {
 
-		String name = id.toString() +".jpg";
-		
-		String path = dir + "/" + name;
-		File uploadedFile = new File(path);
+            logger.info(e.getMessage());
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+        }
 
-		BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(uploadedFile));
-		stream.write(bytes);
-		stream.flush();
-		stream.close();
-		
-		return path;
-}
+        return null;
 
-public static void deleteImage(String path){
-	File image = new File(path);
-	if(image.exists()){
-		image.delete();
-	}
-	else {
-		logger.info("Image "+path+" not exist!");
-	}
-}
+    }
 
-public void deleteAllImages(){
-	String path = "image/";
-	
-	File dir = new File(path);
-	
-	if(!dir.exists()) return;
-	
-	path = path+category;
-	
-	dir = new File(path);
-	
-	deleteDir(dir);
-	
-	
-}
+    // Save the image to the server
+    public String saveImage(Integer id, byte[] file, String uploadDir) throws IOException {
 
-private void deleteDir(File file)
-{
-  if(!file.exists())
-    return;
-  if(file.isDirectory())
-  {
-    for(File f : file.listFiles())
-      deleteDir(f);
-    file.delete();
-  }
-  else
-  {
-    file.delete();
-  }
-}
+        byte[] bytes = ImageUtil.formatImage(file);
+        String dir = this.getPath(id, uploadDir);
+
+        String name = id.toString() + ".jpg";
+
+        String path = dir + "/" + name;
+        File uploadedFile = new File(path);
+
+        BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(uploadedFile));
+        stream.write(bytes);
+        stream.flush();
+        stream.close();
+
+        return path;
+    }
+
+    public static void deleteImage(String path) {
+        File image = new File(path);
+        if (image.exists()) {
+            image.delete();
+        } else {
+            logger.info("Image " + path + " not exist!");
+        }
+    }
+
+    public void deleteAllImages() {
+        String path = "image/";
+
+        File dir = new File(path);
+
+        if (!dir.exists()) return;
+
+        path = path + category;
+
+        dir = new File(path);
+
+        deleteDir(dir);
+
+
+    }
+
+    private void deleteDir(File file) {
+        if (!file.exists())
+            return;
+        if (file.isDirectory()) {
+            for (File f : file.listFiles())
+                deleteDir(f);
+            file.delete();
+        } else {
+            file.delete();
+        }
+    }
 }

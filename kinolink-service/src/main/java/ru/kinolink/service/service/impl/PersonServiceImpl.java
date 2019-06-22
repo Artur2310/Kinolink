@@ -63,13 +63,13 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public boolean saveAll(Iterable<Person> list) {
-        if (list != null) {
+        return Optional.of(list).map(m -> {
             personDAO.saveAll(list);
             return true;
-        } else {
+        }).orElseGet(() -> {
             logger.error("The list to add is null");
             return false;
-        }
+        });
     }
 
     @Override
