@@ -17,5 +17,9 @@ public class SortUtil {
         public static boolean isValid(String sort){
             return myList.stream().anyMatch(str -> str.trim().equals(sort.toLowerCase()));
         }
+
+        public static List<String> getList(){
+            return myList;
+        }
     }
 }

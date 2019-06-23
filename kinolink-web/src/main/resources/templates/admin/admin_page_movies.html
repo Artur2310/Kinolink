@@ -62,16 +62,15 @@
                         <label><a th:text="#{label_sort}"></a>:
                             <select id="sort" class="select" name="sort" onchange="$(this).parent().parent().submit();">
                             <option value="id" th:text="#{label_date_added}"></option>
-                            <option th:selected="${sort == 'releaseDate'}" value="releaseDate" th:text="#{label_new}"></option>
-                            <option th:selected="${sort == 'imdb'}" value="imdb" th:text="#{label_rating}"></option>
-                            <option th:selected="${sort == 'title'}" value="title" th:text="#{label_title}"></option>
+                            <option th:each="sortItem : ${sorts}" th:value="${sort}"
+                                    th:selected="${sortItem == sort}" th:text="${sortItem}"></option>
                             </select>
                         </label>
 
                         <label><a th:text="#{label_country}"></a>:
                             <select id="country-selector" class="select" name="country" onchange="$(this).parent().parent().submit();">
                             <option value="0" th:text="#{select_country_any}"></option>
-                            <option th:each="country : ${countryList}" th:value="${country.id}"
+                            <option th:each="country : ${countries}" th:value="${country.id}"
                                     th:selected="${country.id == countryId}" th:text="${country.getName()}"></option>
                             </select>
                         </label>
@@ -79,7 +78,7 @@
                         <label><a th:text="#{label_genre}"></a>:
                             <select id="genre" name="genre" class="select" onchange="$(this).parent().parent().submit();">
                                 <option value="0" th:text="#{select_genre_any}"></option>
-                                <option th:each="genre : ${genreList}" th:value="${genre.id}"
+                                <option th:each="genre : ${genres}" th:value="${genre.id}"
                                         th:selected="${genre.id == genreId}" th:text="${genre.getTitle()}"></option>
                             </select>
                         </label>
@@ -89,10 +88,13 @@
             </div>
 
             <div id="catalog_content">
-                <div class="movie-item" th:each="movieItem : ${movieList}">
+                <div class="movie-item" th:each="movieItem : ${movies}">
                     <a th:href="${T(ru.kinolink.web.webapp.Url).ADMIN_PAGE_MOVIE}+${movieItem.id}">
-                        <img th:alt="${movieItem.title}" class="cover"
+                        <!--<img th:alt="${movieItem.title}" class="cover"
                              th:src="${movieItem.picturePath != null && !movieItem.picturePath.isEmpty()} ? ${T(ru.kinolink.web.webapp.Url.GET_IMAGE}+${movieItem.picturePath}
+                             : ${T(ru.kinolink.web.webapp.Url).IMAGE_NOT_FOUND}">-->
+                        <img th:alt="${movieItem.title}" class="cover"
+                             th:src="${movieItem.picturePath != null && !movieItem.picturePath.isEmpty()} ? ${T(ru.kinolink.web.webapp.Url).IMAGE_NOT_FOUND}
                              : ${T(ru.kinolink.web.webapp.Url).IMAGE_NOT_FOUND}">
                         <span class="title" th:text="${movieItem.title}"></span>
                     </a>

@@ -81,12 +81,15 @@ public class PageViewListMovie {
         }
 
         public Builder setCurrentPage(Integer currentPage) {
+            if(currentPage != null && currentPage < 0){
+                currentPage = null;
+            }
             this.pageViewListMovie.setCurrentPage(currentPage);
             return this;
         }
 
         public Builder setSort(String sort) {
-            if (sort != null || SortUtil.MovieSort.isValid(sort)) {
+            if (sort != null && SortUtil.MovieSort.isValid(sort)) {
                 this.pageViewListMovie.setSort(sort);
             } else {
                 this.pageViewListMovie.setSort("id");
