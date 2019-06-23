@@ -2,23 +2,29 @@ package ru.kinolink.service.service.impl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 import ru.kinolink.service.repository.PersonDAO;
 import ru.kinolink.service.model.Movie;
 import ru.kinolink.service.model.Person;
 import ru.kinolink.service.service.PersonService;
 
 
+import javax.transaction.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Service("personService")
+@Transactional(Transactional.TxType.REQUIRED)
 public class PersonServiceImpl implements PersonService {
 
     private static final Logger logger = LoggerFactory.getLogger(PersonServiceImpl.class);
 
+    @Autowired
     PersonDAO personDAO;
 
     /**
@@ -28,20 +34,16 @@ public class PersonServiceImpl implements PersonService {
      * @return {@literal true} если усешно добавлен, {@literal false} иначе.
      */
     @Override
-    public boolean add(Person person) {
-        try {
-            if (Optional.of(personDAO.save(person)).isPresent()) {
-                logger.info("Perosn with name - " + person.getName() + " added.");
-                return true;
-            } else {
-                logger.error("Perosn not added. PersonDAO return NULL");
-                return true;
-            }
-
-        } catch (NullPointerException e) {
-            logger.error("Perosn not added. It is null", e);
-            return false;
-        }
+    public Person add(Person person) {
+        return (person != null) ?
+                Optional.of(personDAO.save(person)).map(m -> {
+                    logger.info("Perosn with name - " + person.getName() + " added.");
+                    return m;
+                }).orElseGet(() -> {
+                    logger.error("Perosn not added. PersonDAO return NULL");
+                    return null;
+                })
+                : null;
     }
 
 

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface PersonService {
 
-    boolean add(Person person);
+    Person add(Person person);
 
     Person get(int id);
 

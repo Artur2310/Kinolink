@@ -122,6 +122,9 @@ public class PageViewListMovie {
         }
 
         public Builder setSearch(String search) {
+            if(search != null && search.isEmpty()){
+                search = null;
+            }
             this.pageViewListMovie.setSearch(search);
             return this;
         }
