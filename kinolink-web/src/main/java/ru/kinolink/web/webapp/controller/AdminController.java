@@ -12,7 +12,7 @@ public class AdminController {
 
     private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
-    public static final String VIEW_ADMIN_PAGE_MOVIES = "admin/admin_page_movies";
+    public static final String VIEW_ADMIN_PAGE_MOVIES = "admin/admin_page_movies_demo";
 
     @RequestMapping(value = "")
     public String getAdminPage(){

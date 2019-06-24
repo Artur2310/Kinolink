@@ -24,8 +24,7 @@
             </div>
         </header>
     </div>
-
-    <div class="block">
+    <div class="block slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 885px;">
         <div id="navigation">
             <ul>
                 <li><a th:href="${T(ru.kinolink.web.webapp.Url).ADMIN_PAGE_MOVIES}" th:text="#{button_movies}"></a></li>
@@ -129,13 +128,6 @@
         </div>
     </div>
 
-    <script>
-        $(document).scroll(function() {
-            $('.block').css({
-                top : $(document).scrollTop() + 50
-            });
-        });
-    </script>
 
 </body>
 </html>
