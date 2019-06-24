@@ -89,7 +89,7 @@
                 </div>
             </div>
 
-            <div id="catalog_content">
+            <div id="catalog-content">
                 <div class="movie-item" th:each="movieItem : ${movies}">
                     <a th:href="${T(ru.kinolink.web.webapp.Url).ADMIN_PAGE_MOVIE}+${movieItem.id}">
                         <img th:alt="${movieItem.title}" class="cover"
@@ -115,14 +115,11 @@
                                 currentPage : [[${currentPage+1}]],
                                 displayedPages : 4,
                                 hrefTextPrefix : "?sort="+[[${sort}]]+"&country="+[[${countryId}]]+"&genre="+[[${genreId}]]+"&search="+[[${search}]]+"&page=",
-
                                 prevText : '<span aria-hidden="true">&laquo;</span>',
                                 nextText : '<span aria-hidden="true">&raquo;</span>',
                                 onInit : function() {
-                                    // fire first page loading
                                 },
                                 onPageClick : function(page, evt) {
-                                    // some code
                                 }
                             });
                 </script>

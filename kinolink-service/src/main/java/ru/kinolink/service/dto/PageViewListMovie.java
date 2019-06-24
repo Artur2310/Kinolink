@@ -23,7 +23,7 @@ public class PageViewListMovie {
     private String sort;
     private Integer countryId;
     private Integer genreId;
-    private Integer limit;
+    private Integer limit = 48;
     private String search;
 
     public static PageViewListMovie.Builder newBuilder() {
@@ -45,7 +45,7 @@ public class PageViewListMovie {
     }
 
     public Integer getLimit(){
-        return limit == null ? 50 : limit;
+        return limit == null ? this.limit : limit;
     }
 
     public String getSearch() {
