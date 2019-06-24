@@ -36,7 +36,7 @@ public class MovieImageServiceTest {
     @Autowired
     MovieImageService movieImageService;
 
-    @Value("${upload.dir}")
+    @Value("${upload.dir}/image")
     private String uploadDir;
 
     @Test

@@ -90,11 +90,8 @@
             <div id="catalog_content">
                 <div class="movie-item" th:each="movieItem : ${movies}">
                     <a th:href="${T(ru.kinolink.web.webapp.Url).ADMIN_PAGE_MOVIE}+${movieItem.id}">
-                        <!--<img th:alt="${movieItem.title}" class="cover"
-                             th:src="${movieItem.picturePath != null && !movieItem.picturePath.isEmpty()} ? ${T(ru.kinolink.web.webapp.Url.GET_IMAGE}+${movieItem.picturePath}
-                             : ${T(ru.kinolink.web.webapp.Url).IMAGE_NOT_FOUND}">-->
                         <img th:alt="${movieItem.title}" class="cover"
-                             th:src="${movieItem.picturePath != null && !movieItem.picturePath.isEmpty()} ? ${T(ru.kinolink.web.webapp.Url).IMAGE_NOT_FOUND}
+                             th:src="${movieItem.picturePath != null && !movieItem.picturePath.isEmpty() && T(java.nio.file.Files).exists(T(java.nio.file.Paths).get(uplodDir+movieItem.picturePath))} ? ${T(ru.kinolink.web.webapp.Url.GET_IMAGE}+${movieItem.picturePath}
                              : ${T(ru.kinolink.web.webapp.Url).IMAGE_NOT_FOUND}">
                         <span class="title" th:text="${movieItem.title}"></span>
                     </a>
