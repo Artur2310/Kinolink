@@ -41,6 +41,10 @@ public class AdminMovieController {
                 .setGenreId(NumberParserUtil.parseWithDefault(request.getParameter("genreId"), -1))
                 .build();
 
+        if(pvlMovie.getCurrentPage() > 0){
+            pvlMovie.setCurrentPage(pvlMovie.getCurrentPage() - 1);
+        }
+
         pvlMovie = moviesService.getList(pvlMovie);
         model.addObject("movies", pvlMovie.getMovies());
         model.addObject("totalElements", pvlMovie.getTotalElements());
@@ -51,12 +55,12 @@ public class AdminMovieController {
         model.addObject("genreId", pvlMovie.getGenreId());
         model.addObject("limit", pvlMovie.getLimit());
         model.addObject("search", pvlMovie.getSearch());
-        model.addObject("nextPage", pvlMovie.getNextPage());
+        //model.addObject("nextPage", pvlMovie.getNextPage());
 
         model.addObject("genres", genreDAO.findAll());
         model.addObject("countries", countryDAO.findAll());
         model.addObject("sorts", SortUtil.MovieSort.getList());
-        model.addObject("uplodDir", uploadDir);
+        model.addObject("uploadDir", uploadDir);
 
         model.setViewName(AdminController.VIEW_ADMIN_PAGE_MOVIES);
         return model;

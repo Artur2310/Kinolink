@@ -83,7 +83,7 @@ public class MovieServiceImpl implements MovieService {
 
         Pageable pageable = PageRequest.of(pvlMovie.getCurrentPage(), pvlMovie.getLimit(), Sort.by(pvlMovie.getSort()));
         Page<Movie> page = null;
-        if (pvlMovie.getSearch() != null) {
+        if (pvlMovie.getSearch() != null && !pvlMovie.getSearch().equals("null")) {
             page = movieDAO.findAllByTitle(pvlMovie.getSearch(), pageable);
 
         } else if (pvlMovie.getGenreId() != null && pvlMovie.getCountryId() != null) {
