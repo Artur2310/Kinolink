@@ -61,7 +61,7 @@ public class ServerConfig implements WebMvcConfigurer {
                         "classpath:/static/img/",
                         "classpath:/static/css/",
                         "classpath:/static/js/",
-                        "classpath:/static/images");
+                        "classpath:/static/images/");
     }
 
 }
