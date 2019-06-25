@@ -18,7 +18,9 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/admin/theme-default/material-design-iconic-font.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/admin/theme-default/libs/rickshaw/rickshaw.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/admin/theme-default/libs/morris/morris.core.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin/admin_page_movies.css}"/>
 
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script th:src="@{/js/admin/libs/utils/respond.min.js}"></script>
     <script th:src="@{/js/admin/libs/utils/respond.min.js}"></script>
 
@@ -148,6 +150,23 @@
                     <!-- END SITE ACTIVITY -->
 
                 </div><!--end .row -->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="movie-item card" th:each="movieItem : ${movies}">
+                            <a th:href="${T(ru.kinolink.web.webapp.Url).ADMIN_PAGE_MOVIE}+${movieItem.id}">
+                                <img th:alt="${movieItem.title}" class="cover"
+                                     th:src="${movieItem.picturePath != null && !movieItem.picturePath.isEmpty() && T(java.nio.file.Files).exists(T(java.nio.file.Paths).get(uploadDir+movieItem.picturePath))} ? uplodDir+movieItem.picturePath
+                             : ${T(ru.kinolink.web.webapp.Url).IMAGE_NOT_FOUND}">
+                                <span class="title text-primary-dark" th:text="${movieItem.title}"></span>
+                            </a>
+                            <span class="add-info"><a th:text="${#dates.format(movieItem.releaseDate, 'yyyy')}"></a>
+                                <span class="imdb" th:text="#{label_imdb}"></span> <a th:text="${movieItem.imdb}"></a>,
+                            </span>
+                            <span th:text="${movieItem.getGenreString()}"></span>
+                        </div>
+                    </div>
+                </div>
 
             </div><!--end .section-body -->
         </section>
