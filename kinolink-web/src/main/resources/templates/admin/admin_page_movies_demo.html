@@ -23,6 +23,8 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script th:src="@{/js/admin/libs/utils/respond.min.js}"></script>
     <script th:src="@{/js/admin/libs/utils/respond.min.js}"></script>
+    <script th:src="@{/js/jquery/jquery.simple_pagination.js}"></script>
+
 
 </head>
 <body class="menubar-hoverable header-fixed ">
@@ -165,6 +167,30 @@
                             </span>
                             <span th:text="${movieItem.getGenreString()}"></span>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div th:if="${totalPages > 1}" class="pagination-page">
+                            <ul class="simple-pagination pagination" id="pagination"></ul>
+                        </div>
+                        <script th:inline="javascript">
+                            $('#pagination')
+                                .pagination(
+                                    {
+                                        items : [[${totalPages}]],
+                                        itemOnPage : 8,
+                                        currentPage : [[${currentPage+1}]],
+                                        displayedPages : 4,
+                                        hrefTextPrefix : "?sort="+[[${sort}]]+"&country="+[[${countryId}]]+"&genre="+[[${genreId}]]+"&search="+[[${search}]]+"&page=",
+                                        prevText : '<span aria-hidden="true">&laquo;</span>',
+                                        nextText : '<span aria-hidden="true">&raquo;</span>',
+                                        onInit : function() {
+                                        },
+                                        onPageClick : function(page, evt) {
+                                        }
+                                    });
+                        </script>
                     </div>
                 </div>
 
